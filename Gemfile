@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem "sublayer", path: "/Users/swerner/Development/cli/sublayer"
 gemspec
 
 group :test do

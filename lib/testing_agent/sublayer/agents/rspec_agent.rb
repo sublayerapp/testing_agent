@@ -11,15 +11,17 @@ module Sublayer
         [@implementation_file_path, @test_file_path]
       end
 
-      goal_condition do
-        @tests_passing == true
-      end
-
       check_status do
-        stdout, stderr, status = Sublayer::Actions::RunTestCommandAction.new(test_command: "rspec #{@test_file_path}").call
+        stdout, stderr, status = Sublayer::Actions::RunTestCommandAction.new(
+            test_command: "rspec #{@test_file_path}"
+        ).call
 
         @test_output = stdout
         @tests_passing = (status.exitstatus == 0)
+      end
+
+      goal_condition do
+        @tests_passing == true
       end
 
       step do
