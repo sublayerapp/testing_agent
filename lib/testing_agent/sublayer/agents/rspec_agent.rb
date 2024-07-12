@@ -12,12 +12,12 @@ module Sublayer
       end
 
       check_status do
-        stdout, stderr, status = Sublayer::Actions::RunTestCommandAction.new(
-            test_command: "rspec #{@test_file_path}"
-        ).call
+        stdout, stderr, status = Sublayer::Actions::RunTestCommandAction.new( test_command: "rspec #{@test_file_path}").call
+        puts stdout
 
         @test_output = stdout
         @tests_passing = (status.exitstatus == 0)
+        @tests_passing ? puts("Tests passing") : puts("Tests failing")
       end
 
       goal_condition do
